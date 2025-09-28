@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Author Details{% endblock %}
+
+{% block body %}
+    <h1>{{ author.username }}</h1>
+
+    <img src="{{ asset(author.picture) }}" width="200">
+    <p>Email: {{ author.email }}</p>
+    <p>Books: {{ author.nb_books }}</p>
+
+    <a href="{{ path('authors_list') }}">Back to list</a>
+{% endblock %}
