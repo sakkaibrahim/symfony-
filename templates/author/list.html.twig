@@ -1,33 +1,17 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Authors List{% endblock %}
-
-{% block body %}
-    <h1>Authors List</h1>
-
-    {% if authors is not defined or authors is empty %}
-        <p>No authors found.</p>
-    {% else %}
-        <p>Total Authors: {{ authors|length }}</p>
-        <p>Total Books: {{ authors|map(a => a.nb_books)|reduce((sum, books) => sum + books) }}</p>
-
-        <table border="1" cellpadding="8">
-            <tr>
-                <th>Picture</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Books</th>
-                <th>Action</th>
-            </tr>
-            {% for author in authors %}
-                <tr>
-                    <td><img src="{{ asset(author.picture) }}" width="100"></td>
-                    <td>{{ author.username|upper }}</td>
-                    <td>{{ author.email }}</td>
-                    <td>{{ author.nb_books }}</td>
-                    <td><a href="{{ path('author_details', {id: author.id}) }}">Details</a></td>
-                </tr>
-            {% endfor %}
-        </table>
-    {% endif %}
-{% endblock %}
+<h2>Liste des auteurs</h2>
+<table border="1">
+<tr>
+  <th>ID</th>
+  <th>Nom d'utilisateur</th>
+  <th>Email</th>
+</tr>
+{% for author in authors %}
+<tr>
+  <td>{{ author.id }}</td>
+  <td>{{ author.username }}</td>
+  <td>{{ author.email }}</td>
+</tr>
+{% else %}
+<tr><td colspan="3">Aucun auteur trouvé</td></tr>
+{% endfor %}
+</table>
